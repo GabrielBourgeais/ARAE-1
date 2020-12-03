@@ -8,12 +8,13 @@
 
 .barre {
   float: left;
+  border-right: 1.5px solid black; 
 }
 
 .lien_barre {
   display: block;
   padding: 8px;
-  background-color: #dddddd;
+  background-color: #9370DB;
 }
 
 .footer {
@@ -30,4 +31,30 @@ h1{
 	text-decoration: underline;
 	color: red ;
 
+}
+
+img{
+
+
+	width: 70px;
+	height: 70px
+
+
+}
+
+body{
+
+background-color: #E6E6FA;
+s
+}
+
+h2{
+
+		color: blue;
+
+}
+
+form{
+
+	text-align: center
 }
