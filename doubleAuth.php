@@ -19,14 +19,10 @@ $alors = $_SESSION['alors'];
                 <input type="text" id="id" name="userDACode">
                 <br>
 
-				<input class="button" type="submit" name="submit" value="Verifier Code" />
+				<input class="button" type="submit" name="submit" value="Vérifier Code" />
 	            <input class="button" type="reset" name="reset" value="Reset" />
 
 			</form>
-
-<p>
-	Code: <?php echo "$doubleAuthCode $alors" ?>
-</p>
 
 <?php
 

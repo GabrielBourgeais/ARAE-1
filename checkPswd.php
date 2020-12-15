@@ -1,6 +1,15 @@
 <?php
 session_start();
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'PHPMailer-master/src/Exception.php';
+require 'PHPMailer-master/src/PHPMailer.php';
+require 'PHPMailer-master/src/SMTP.php';
+
+ini_set('display_errors', 1);
+error_reporting( E_ALL );
+
 function generateRandomString($length = 10) {
     $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -59,11 +68,53 @@ if (hash('SHA256',$userPassword) == $result['password']){
         //Saves doubleAuth code to session
         $_SESSION['doubleAuthCode'] = $doubleAuthCode;
 
-        //Sends email with doubleAuth code
-        $subject = 'Code de vérification';
-        $message = 'Le code est : $doubleAuthCode';
+        //$D_[eM5pYfAX
 
-        $alors = mail($result['email'], $subject, $message);
+        $firstname = $result['firstname'];
+        $lastname = $result['lastname'];
+        $email = $result['email'];
+
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->Mailer = "smtp";
+
+        $mail->SMTPDebug  = 1;  
+        $mail->SMTPAuth   = TRUE;
+        $mail->SMTPSecure = "tls";
+        $mail->Port       = 587;
+        $mail->Host       = "smtp.gmail.com";
+        $mail->Username   = "araespace@gmail.com";
+        $mail->Password   = '$D_[eM5pYfAX';
+
+        $mail->IsHTML(true);
+        $mail->AddAddress($email, "$firstname $lastname");
+        $mail->SetFrom("araespace@gmail.com", "ARAE Authentification");
+        $mail->Subject = "[ARAE] Double authentification";
+        $content =
+        "
+        <body style='text-align: center;'>
+            <h1 style='font-size: 25px; color:black; text-align: center;'>Bonjour $firstname $lastname,</h1>
+            <p style='font-size: 15px; color:black; text-align: center;'>
+                Vous avez demandé la double authentification pour la connection à votre compte ARAE,
+                <br>Voici votre code temporaire :
+            </p>
+            <p style = 'font-size:35px; text-align:center; border: 2px solid black; border-radius: 15px;padding: 10px; margin-left: 35%; margin-right: 35%;'>
+                <strong>$doubleAuthCode</strong>
+            </p>
+            <p style='font-size: 15px; color:black; text-align: center;'>
+                Si cette demande ne provient pas de vous, veuillez ignorez ce mail.
+            </p> 
+        </body>
+        ";
+
+        $mail->MsgHTML($content); 
+        if(!$mail->Send()) {
+            var_dump($mail);
+            $alors = "ERREUR -> $mail";
+        } else {
+            $alors = "Envoyé";
+        }
+
         $_SESSION['alors'] = $alors;
 
         //Redirects to doubleAuth page
