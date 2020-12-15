@@ -4,8 +4,9 @@
 	$firstname = $_SESSION['firstname'];
 	$lastname = $_SESSION['lastname'];
 	$email = $_SESSION['email'];
-	$company_id = $_SESSION['company_id'];
-	$manager_id = $_SESSION['manager_id'];
+	$company_name = $_SESSION['company_name'];
+	$manager_firstname = $_SESSION['manager_firstname'];
+	$manager_lastname = $_SESSION['manager_lastname'];
 ?>
 
 <p>

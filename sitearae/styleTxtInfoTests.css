@@ -1,0 +1,52 @@
+body {
+color:black;
+background-image : url(image.png);
+background-size: cover;
+text-align:center;
+
+}
+
+#test{
+	border:white solid;
+	float: left;
+    margin-left: 300px;
+    margin-right: 118px;
+    margin-top: 70px;
+    height: 400px;
+    width: 600px;
+    border-radius: 10px;
+}
+
+#txt {
+
+   width: 550px; height: 500px;
+   padding:10px;
+   margin:10px;
+   float :left;  
+   background-color: transparent;   
+   position: absolute;              
+   z-index: 2;  
+   text-align : justify;  
+   font-family:arial;       
+}
+
+
+#fond {
+   background-color: white;       
+   opacity: 0.5;
+   height: 400px;
+   width: 550px
+   margin-left: 700px;
+
+    
+}
+
+h1{
+	color:white;
+	text-align: center;
+	font-size:4em;
+	font-family:arial ;
+}
+
+
+

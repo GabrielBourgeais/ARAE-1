@@ -1,17 +1,34 @@
-<!DOCTYPE html>
+<?php  
+	session_start();
+	try
+	{
+		//Expire time in seconds
+		$expireIn = 15 * 60;
+		if ($mins = ((time() - intval($_SESSION['lastTimeOfConnection']))) < $expireIn)
+		{
+			header("Location: userProfilePage.php");
+        	exit();
+		}
+	}
+	finally
+	{
+		$error = 1;
+	}
+?>
 <html>
 <head>
 	<title>CONNEXION</title>
 	<link rel="stylesheet" type="text/css" href="styleConnexion.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins2:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
 	<header>
 		<nav id="menu">
 			<ul>
 				<li><a href="index.html">HOME</a></li>	<!-- voir Jquery pour le scroll-->
-				<li><a href="index.html#ptolemeeSection" class="anchor-scroll" data-class-to="ptolemeeSection" data-on-scroll="blur-effect">LA SOLUTION PTOL&EacuteM&EacuteE</a></li>
+				<li><a href="index.html#ptolemeeSection" class="anchor-scroll" data-class-to="ptolemeeSection" data-on-scroll="blur-effect">LA SOLUTION PTOLÉMÉE</a></li>
 				<li><a href="index.html#infiniteMeasureSection" class="anchor-scroll" data-class-to="infiniteMeasureSection" data-on-scroll="blur-effect">INFINITE MEASURE</a></li>
 				<li id="connexionButton"><a href="connexion.php">CONNEXION</a></li>
 			</ul>
