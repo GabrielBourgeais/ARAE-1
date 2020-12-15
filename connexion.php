@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+<?php  
+	session_start();
+	try
+	{
+		//Expire time in seconds
+		$expireIn = 15 * 60;
+		if ($mins = ((time() - intval($_SESSION['lastTimeOfConnection']))) < $expireIn)
+		{
+			header("Location: userProfilePage.php");
+        	exit();
+		}
+	}
+	finally
+	{
+		$error = 1;
+	}
+?>
 <html>
 <head>
 	<title>CONNEXION</title>

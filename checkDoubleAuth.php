@@ -4,7 +4,9 @@ session_start();
 //Check if double Auth is valid
 if ($_POST['userDACode'] == $_SESSION['doubleAuthCode'])
 {
-    header("Location: connectedProfile.php");
+
+    $_SESSION['lastTimeOfConnection'] = strval(time());
+    header("Location: userProfilePage.php");
     exit();
 }
 else

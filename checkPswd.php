@@ -108,14 +108,7 @@ if (hash('SHA256',$userPassword) == $result['password']){
         ";
 
         $mail->MsgHTML($content); 
-        if(!$mail->Send()) {
-            var_dump($mail);
-            $alors = "ERREUR -> $mail";
-        } else {
-            $alors = "Envoyé";
-        }
-
-        $_SESSION['alors'] = $alors;
+        $mail->Send();
 
         //Redirects to doubleAuth page
         header("Location: doubleAuth.php");
@@ -124,7 +117,8 @@ if (hash('SHA256',$userPassword) == $result['password']){
     else
     {
         //Forwards to profile page
-        header("Location: connectedProfile.php");
+        $_SESSION['lastTimeOfConnection'] = strval(time());
+        header("Location: userProfilePage.php");
         exit();
     }   
 }
